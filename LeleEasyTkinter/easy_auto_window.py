@@ -1,7 +1,6 @@
 class EasyWindow:
     def __init__(self, window, window_title="window", adjust_x=True, adjust_y=True, minimum_value_x=20,
-                 minimum_value_y=20,
-                 maximum_value_x=4096, maximum_value_y=4096):
+                 minimum_value_y=20, maximum_value_x=4096, maximum_value_y=4096):
         self.window = window
         self.window_title = window_title
         self.adjust_x = adjust_x
