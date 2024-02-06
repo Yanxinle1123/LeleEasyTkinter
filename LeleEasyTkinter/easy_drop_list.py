@@ -3,10 +3,11 @@ import tkinter
 
 class EasyDropList:
 
-    def __init__(self, window, options=['选项1', '选项2', '选项3'], cmd=None, side=tkinter.TOP, expand=False,
-                 fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
+    def __init__(self, window, options=None, cmd=None, side=tkinter.TOP, expand=False,
+                 fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
                  layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+        if options is None:
+            options = ['选项1', '选项2', '选项3']
         self._window = window
         self._options = options
         self._command = cmd
