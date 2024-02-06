@@ -18,7 +18,7 @@ class EasyRadioButton:
         self._var.set(1)
         self._radio_buttons = []
         for i, option in enumerate(self._options, start=1):
-            radio_button = tkinter.Radiobutton(self._window, text=option, variable=self._var, value=i)
+            radio_button = tkinter.Radiobutton(self._window, text=option, variable=self._var, value=int(i))
             print(f"self._var = {self._var.get()}\n"
                   f"i = {i}\n"
                   f"option = {option}\n")
