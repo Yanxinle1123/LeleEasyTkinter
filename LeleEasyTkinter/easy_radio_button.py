@@ -2,7 +2,7 @@ import tkinter
 
 
 class EasyRadioButton:
-    def __init__(self, window, text=None, intVar=None, cmd=None, side=tkinter.TOP, expand=False,
+    def __init__(self, window, text=None, int_var=None, cmd=None, side=tkinter.TOP, expand=False,
                  fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
                  layout="pack", row=0, column=0, rowspan=1, columnspan=1):
         if text is None:
@@ -13,11 +13,10 @@ class EasyRadioButton:
         self._width = width
         self._height = height
         self._font_size = font_size
-
-        self._var = intVar
+        self._int_var = int_var
         self._radio_buttons = []
         for i, option in enumerate(self._options, start=1):
-            radio_button = tkinter.Radiobutton(self._window, text=option, variable=self._var, value=i)
+            radio_button = tkinter.Radiobutton(self._window, text=option, variable=self._int_var, value=i)
             if layout == "grid":
                 radio_button.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
                                   padx=padx, pady=pady, ipadx=ipadx, ipady=ipady)
@@ -30,4 +29,4 @@ class EasyRadioButton:
         return self._radio_buttons
 
     def get_radio_button_value(self):
-        return self._var.get()
+        return self._int_var.get()
