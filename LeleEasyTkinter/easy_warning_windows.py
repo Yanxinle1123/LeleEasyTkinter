@@ -23,3 +23,9 @@ class EasyWarningWindows:
         elif self._title == "输入框":
             result = simpledialog.askstring(self._title, self._message)
             return result
+
+    def get_title(self):
+        return self._title
+
+    def get_message(self):
+        return self._message

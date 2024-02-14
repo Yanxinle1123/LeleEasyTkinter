@@ -2,15 +2,15 @@ import tkinter
 
 
 class EasyMultiText:
-    def __init__(self, win, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
+    def __init__(self, window, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
                  padx=0, pady=0, ipadx=0, ipady=0, width=30, height=5, font_size=17, state_str="normal",
                  layout="pack", row=0, column=0, rowspan=1, columnspan=1):
-        self._win = win
+        self._window = window
         self._width = width
         self._height = height
         self._font_size = font_size
         self._state_str = state_str
-        f1 = tkinter.Frame(win)
+        f1 = tkinter.Frame(self._window)
         if layout == "grid":
             f1.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
                     padx=padx, pady=pady, ipadx=ipadx, ipady=ipady)
