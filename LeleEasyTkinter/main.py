@@ -61,7 +61,7 @@ def layout_by_pack(win):
 window = tkinter.Tk()
 
 easy_window = EasyWindow(window, "测试窗口")
-a, b = easy_window.auto_position()
+easy_window.auto_position()
 layout_by_pack(window)
-print(a, b)
+print(f"window width = {easy_window.get_window_width()}, height = {easy_window.get_window_height()}")
 window.mainloop()
