@@ -39,10 +39,10 @@ class EasyWindow:
         self._window.maxsize(self._maximum_value_x, self._maximum_value_y)
 
     def get_window_width(self):
-        return self._window.winfo_width()
+        return self._window_width_value
 
     def get_window_height(self):
-        return self._window.winfo_height()
+        return self._window_height_value
 
     def get_window_x(self):
         return self._window_x_value
