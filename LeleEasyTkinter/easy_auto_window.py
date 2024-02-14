@@ -37,6 +37,7 @@ class EasyWindow:
         self._window.resizable(self._adjust_x, self._adjust_y)
         self._window.minsize(self._minimum_value_x, self._minimum_value_y)
         self._window.maxsize(self._maximum_value_x, self._maximum_value_y)
+        return self
 
     def get_window_width(self):
         return self._window_width_value
