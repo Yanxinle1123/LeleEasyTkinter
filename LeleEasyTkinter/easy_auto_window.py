@@ -1,7 +1,9 @@
 class EasyWindow:
-    def __init__(self, window, window_title="window", adjust_x=True, adjust_y=True, minimum_value_x=20,
+    def __init__(self, window, get_window=False, window_title="window", adjust_x=True, adjust_y=True,
+                 minimum_value_x=20,
                  minimum_value_y=20, maximum_value_x=4096, maximum_value_y=4096):
         self.window = window
+        self.get_window = get_window
         self.window_title = window_title
         self.adjust_x = adjust_x
         self.adjust_y = adjust_y
@@ -29,3 +31,5 @@ class EasyWindow:
         self.window.resizable(self.adjust_x, self.adjust_y)
         self.window.minsize(self.minimum_value_x, self.minimum_value_y)
         self.window.maxsize(self.maximum_value_x, self.maximum_value_y)
+        if self.get_window:
+            return window_width_value, window_height_value
