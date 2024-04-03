@@ -1,10 +1,12 @@
 import tkinter
 
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+
 
 class EasyRadioButton:
-    def __init__(self, window, text=None, int_var=None, cmd=None, side=tkinter.TOP, expand=False,
-                 fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
-                 layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+    def __init__(self, window, text=None, int_var=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
+                 padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0,
+                 rowspan=1, columnspan=1):
         if text is None:
             text = ['选项1', '选项2', '选项3']
         self._window = window
@@ -30,3 +32,13 @@ class EasyRadioButton:
 
     def get_radio_button_value(self):
         return self._int_var.get()
+
+
+if __name__ == '__main__':
+    root = tkinter.Tk()
+    EasyAutoWindow(root, window_title="RadioButton", window_width_value=200, window_height_value=100, adjust_x=False,
+                   adjust_y=False)
+    var = tkinter.IntVar()
+    var.set(1)
+    EasyRadioButton(root, int_var=var, expand=tkinter.YES)
+    root.mainloop()

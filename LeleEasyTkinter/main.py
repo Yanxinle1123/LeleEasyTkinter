@@ -1,67 +1,55 @@
-import tkinter
+import tkinter as tk
 
-from LeleEasyTkinter.easy_auto_window import EasyWindow
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 from LeleEasyTkinter.easy_button import EasyButton
 from LeleEasyTkinter.easy_drop_list import EasyDropList
-from LeleEasyTkinter.easy_frame import EasyFrame
 from LeleEasyTkinter.easy_label import EasyLabel
-from LeleEasyTkinter.easy_multi_text import EasyMultiText
-from LeleEasyTkinter.easy_radio_button import EasyRadioButton
+from LeleEasyTkinter.easy_progressbar import EasyProgressbar
 from LeleEasyTkinter.easy_warning_windows import EasyWarningWindows
 
 
-def on_select():
-    #
-    pass
+def trigger():
+    EasyWarningWindows("信息", "这是按钮被点击时触发的代码, 可以改动参数 cmd 来实现").show_warning()
 
 
-def layout_by_pack(win):
-    warning_windows = EasyWarningWindows(title="信息",
-                                         message="欢迎使用中英文翻译程序\nWelcome to the Chinese and English translation program")
-    warning_windows.show_warning()
-
-    # 增加label
-    f1 = EasyFrame(win, tkinter.TOP, True, tkinter.BOTH, pady=2).get()
-
-    f11 = EasyFrame(f1, tkinter.LEFT, True, tkinter.BOTH, padx=2).get()
-
-    f111 = EasyFrame(f11, tkinter.TOP, True, tkinter.BOTH).get()
-    translate_label_need = EasyLabel(f111, "需要翻译的文本：", tkinter.LEFT)
-    translate_text_need = EasyMultiText(f111, tkinter.LEFT, True, tkinter.BOTH)
-
-    f112 = EasyFrame(f11, tkinter.TOP, True, tkinter.BOTH).get()
-    translate_label_after = EasyLabel(f112, "翻译之后的文本：", tkinter.LEFT)
-    translate_text_after = EasyMultiText(f112, tkinter.LEFT, True, tkinter.BOTH, state_str="disabled")
-
-    f12 = EasyFrame(f1, tkinter.LEFT, False, tkinter.Y, padx=2).get()
-    translate_label = EasyLabel(f12, "翻译语言码：", tkinter.TOP, True, tkinter.BOTH)
-    translate_en_button = EasyDropList(f12,
-                                       ["英语(en)", "中文简体(zh-CN)", "中文繁体(zh-TW)", "西班牙语(es)",
-                                        "法语(fr)", "德语(de)", "日语(ja)", "韩语(ko)", "俄语(ru)",
-                                        "葡萄牙语(pt)", "意大利语(it)", "荷兰语(nl)", "瑞典语(sv)",
-                                        "波兰语(pl)", "丹麦语(da)", "希腊语(el)", "芬兰语(fi)",
-                                        "捷克语(cs)", "匈牙利语(hu)", "挪威语(no)", "泰语(th)",
-                                        "印度尼西亚语(id)", "越南语(vi)", "马来语(ms)", "土耳其语(tr)"],
-                                       on_select, tkinter.TOP, True,
-                                       tkinter.X)
-    translate_cn_button = EasyButton(f12, "翻译", None,
-                                     tkinter.TOP, True, tkinter.BOTH)
-
-    f13 = EasyFrame(f1, tkinter.LEFT, False, tkinter.Y).get()
-    translate_auto_radio_button = EasyRadioButton(f13, ["自动翻译关", "自动翻译开"], tkinter.NONE,
-                                                  expand=True,
-                                                  fill=tkinter.Y)
-
-    f2 = EasyFrame(win, tkinter.TOP, False, tkinter.X, pady=2).get()
-    quit_button = EasyButton(f2, "退出",
-                             quit, tkinter.TOP, False, tkinter.BOTH,
-                             padx=2, height=2)
+def start_progressbar():
+    for _ in range(100):
+        progressbar.increase_progressbar()
 
 
-window = tkinter.Tk()
+def quit_window():
+    window.destroy()
 
-easy_window = EasyWindow(window, "测试窗口")
-easy_window.auto_position()
-layout_by_pack(window)
-print(f"window width = {easy_window.get_window_width()}, height = {easy_window.get_window_height()}")
+
+def author():
+    EasyWarningWindows("信息", "作者: Yan Xinle").show_warning()
+
+
+window = tk.Tk()
+
+EasyAutoWindow(window, window_title="LeleEasyTkinter 库的小部件", window_width_value=1200, window_height_value=800,
+               adjust_y=False, adjust_x=False)
+EasyLabel(window, text="这个窗口是由 LeleEasyTkinter 库的 EasyAutoWindow 类创建的, 你可以通过调各种参数来控制窗口",
+          font_size=20, side=tk.TOP, expand=tk.YES)
+EasyLabel(window, text="这几行文本是由 LeleEasyTkinter 库的 EasyLabel 类创建的, 可以调整颜色, 字体等样式", font_size=20,
+          side=tk.TOP, expand=tk.YES)
+EasyLabel(window, text="接下来, 我们来看下 LeleEasyTkinter 库可以创建的几个小部件, 这些小部件都可以调整各种样式",
+          font_size=20, side=tk.TOP, expand=tk.YES)
+
+EasyLabel(window, text="1. 按钮", font_size=20, side=tk.TOP, expand=tk.YES)
+EasyButton(window, text="点一下我", expand=tk.YES, width=6, height=1, font_size=12, cmd=trigger)
+
+EasyLabel(window, text="2. 下拉列表", font_size=20, side=tk.TOP, expand=tk.YES)
+EasyDropList(window)
+
+EasyLabel(window, text="3. 进度条", font_size=20, side=tk.TOP, expand=tk.YES)
+progressbar = EasyProgressbar(window, expand=tk.YES, side=tk.TOP)
+EasyButton(window, text="开始", font_size=12, side=tk.TOP, expand=tk.YES, width=6, height=1, cmd=start_progressbar)
+
+EasyLabel(window, text="除了这些, 还有其他小部件可以创建出来, 可以探索一下", font_size=20, side=tk.TOP, expand=tk.YES)
+
+EasyButton(window, text="退出", font_size=12, width=6, height=1, side=tk.RIGHT, cmd=quit_window)
+
+EasyButton(window, text="作者", font_size=12, width=6, height=1, side=tk.RIGHT, cmd=author)
+
 window.mainloop()

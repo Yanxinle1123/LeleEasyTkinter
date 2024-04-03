@@ -1,13 +1,13 @@
 import tkinter
-
 from tkinter import Button
+
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 
 
 class EasyButton:
 
-    def __init__(self, window, text, cmd="", side=tkinter.TOP, expand=False, fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
-                 layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+    def __init__(self, window, text, cmd="", side=tkinter.TOP, expand=False, fill=tkinter.NONE, padx=0, pady=0, ipadx=0,
+                 ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0, rowspan=1, columnspan=1):
         self._window = window
         self._text = text
         self._command = cmd
@@ -25,3 +25,13 @@ class EasyButton:
 
     def get_button(self):
         return self._button
+
+
+if __name__ == "__main__":
+    root = tkinter.Tk()
+    EasyAutoWindow(root, window_title="Button", window_width_value=150, window_height_value=80, adjust_x=False,
+                   adjust_y=False)
+
+    EasyButton(root, "Button", expand=tkinter.YES, width=10, height=1, font_size=12)
+
+    root.mainloop()

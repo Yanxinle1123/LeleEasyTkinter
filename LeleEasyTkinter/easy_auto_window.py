@@ -1,13 +1,16 @@
-class EasyWindow:
-    def __init__(self, window, window_title="window", adjust_x=True, adjust_y=True,
-                 minimum_value_x=20,
-                 minimum_value_y=20, maximum_value_x=4096, maximum_value_y=4096):
-        self._window_y_value = None
-        self._window_height_value = None
-        self._screen_height = None
-        self._window_width_value = None
-        self._window_x_value = None
-        self._screen_width = None
+import tkinter as tk
+
+
+class EasyAutoWindow:
+    def __init__(self, window, window_y_value=None, window_height_value=None, screen_height=None,
+                 window_width_value=None, window_x_value=None, screen_width=None, window_title="window", adjust_x=True,
+                 adjust_y=True, minimum_value_x=20, minimum_value_y=20, maximum_value_x=4096, maximum_value_y=4096):
+        self._window_y_value = window_y_value
+        self._window_height_value = window_height_value
+        self._screen_height = screen_height
+        self._window_width_value = window_width_value
+        self._window_x_value = window_x_value
+        self._screen_width = screen_width
         self._window = window
         self._window_title = window_title
         self._adjust_x = adjust_x
@@ -17,18 +20,27 @@ class EasyWindow:
         self._maximum_value_x = maximum_value_x
         self._maximum_value_y = maximum_value_y
 
-    def auto_position(self):
-        # 获取屏幕的宽和高
-        self._screen_width = self._window.winfo_screenwidth()
-        self._screen_height = self._window.winfo_screenheight()
+        if self._screen_width is None:
+            self._screen_width = self._window.winfo_screenwidth()
 
-        # 获取窗口的宽和高
-        self._window_width_value = self._screen_width - 100
-        self._window_height_value = int(self._screen_height * 8.4) // 10
+        if self._screen_height is None:
+            self._screen_height = self._window.winfo_screenheight()
 
-        # 计算窗口位置
-        self._window_x_value = (self._screen_width - self._window_width_value) // 2
-        self._window_y_value = (self._screen_height - self._window_height_value) // 2 - 20
+        if self._window_width_value is None:
+            self._window_width_value = self._screen_width - 100
+
+        if self._window_height_value is None:
+            self._window_height_value = int(self._screen_height * 8.4) // 10
+
+        if self._window_y_value is None:
+            self._window_y_value = (self._screen_height - self._window_height_value) // 2 - 20
+
+        if self._window_x_value is None:
+            self._window_x_value = (self._screen_width - self._window_width_value) // 2
+
+        self._auto_position()
+
+    def _auto_position(self):
 
         # 最终设置好位置
         self._window.geometry(
@@ -53,3 +65,10 @@ class EasyWindow:
 
     def get_window_title(self):
         return self._window_title
+
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    EasyAutoWindow(root, window_title="EasyAutoWindow", window_width_value=400, window_height_value=300, adjust_y=False,
+                   adjust_x=False)
+    root.mainloop()

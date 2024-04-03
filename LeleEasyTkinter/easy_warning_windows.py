@@ -29,3 +29,22 @@ class EasyWarningWindows:
 
     def get_message(self):
         return self._message
+
+
+def demo_warning():
+    EasyWarningWindows("警告", "这是一个警告").show_warning()
+    EasyWarningWindows("信息", "这是一个信息").show_warning()
+    EasyWarningWindows("错误", "这是一个错误").show_warning()
+
+    askquestion_result = EasyWarningWindows("询问", "这是一条询问").show_warning()
+    print(askquestion_result)
+
+    askyesno_result = EasyWarningWindows("是/否", "这是一个选择").show_warning()
+    print(askyesno_result)
+
+    askstring_result = EasyWarningWindows("输入框", "这是一个输入框").show_warning()
+    print(askstring_result)
+
+
+if __name__ == '__main__':
+    demo_warning()

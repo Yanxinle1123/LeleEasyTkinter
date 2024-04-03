@@ -1,19 +1,20 @@
 import tkinter
 
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from LeleEasyTkinter.easy_label import EasyLabel
+
 
 class EasyFrame:
-    def __init__(self, window, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0,
-                 is_debug=False, text="",
-                 font_size=17, width=17, height=0,
-                 layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+    def __init__(self, window, side=tkinter.TOP, expand=None, fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0,
+                 is_debug=False, text="", font_size=17, width=17, height=0, layout="pack", row=0, column=0, rowspan=1,
+                 columnspan=1):
         self._window = window
         self._text = text
         self._font_size = font_size
         self._width = width
         self._height = height
         self._is_debug = is_debug
-        # self._bg = bg
+
         if self._is_debug:
             self._label_frame = tkinter.LabelFrame(window, text=self._text, font=("Arial", self._font_size),
                                                    height=self._height)
@@ -45,3 +46,12 @@ class EasyFrame:
             return self._label_frame
         else:
             return self._frame
+
+
+if __name__ == "__main__":
+    root = tkinter.Tk()
+    EasyAutoWindow(root, window_title="Frame", window_width_value=200, window_height_value=50, adjust_x=False,
+                   adjust_y=False)
+    f1 = EasyFrame(root, is_debug=True, expand=tkinter.YES).get()
+    EasyLabel(f1, text="f1", expand=tkinter.YES)
+    root.mainloop()

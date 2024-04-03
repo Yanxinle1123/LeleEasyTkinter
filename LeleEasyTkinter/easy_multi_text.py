@@ -1,10 +1,12 @@
 import tkinter
 
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+
 
 class EasyMultiText:
-    def __init__(self, window, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, width=30, height=5, font_size=17, state_str="normal",
-                 layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+    def __init__(self, window, side=tkinter.TOP, expand=False, fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0,
+                 width=30, height=5, font_size=17, state_str="normal", layout="pack", row=0, column=0, rowspan=1,
+                 columnspan=1):
         self._window = window
         self._width = width
         self._height = height
@@ -32,3 +34,11 @@ class EasyMultiText:
 
     def get_content(self):
         return self._entry.get("1.0", tkinter.END).strip()
+
+
+if __name__ == '__main__':
+    root = tkinter.Tk()
+    EasyAutoWindow(root, window_title="MultiText", window_width_value=200, window_height_value=50, adjust_x=False,
+                   adjust_y=False)
+    text_box = EasyMultiText(root)
+    root.mainloop()

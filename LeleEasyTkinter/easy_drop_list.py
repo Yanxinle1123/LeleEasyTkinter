@@ -1,11 +1,13 @@
 import tkinter
 
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+
 
 class EasyDropList:
 
-    def __init__(self, window, options=None, cmd=None, side=tkinter.TOP, expand=False,
-                 fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17,
-                 layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+    def __init__(self, window, options=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE, padx=0,
+                 pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0, rowspan=1,
+                 columnspan=1):
         if options is None:
             options = ['选项1', '选项2', '选项3']
         self._window = window
@@ -29,3 +31,11 @@ class EasyDropList:
 
     def get_combo_value(self):
         return self._selected_option.get()
+
+
+if __name__ == '__main__':
+    root = tkinter.Tk()
+    EasyAutoWindow(root, window_title="DropList", window_width_value=200, window_height_value=50, adjust_x=False,
+                   adjust_y=False)
+    EasyDropList(root, expand=tkinter.YES)
+    root.mainloop()
