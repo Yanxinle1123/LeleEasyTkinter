@@ -1,10 +1,13 @@
-import tkinter
+import tkinter as tk
 
-from LeleEasyTkinter.easy_radio_button import EasyRadioButton
+from easy_fade_animation import fade_in, fade_out
 
-root = tkinter.Tk()
-var = tkinter.IntVar()
-var.set(2)
-options = ["选项1", "选项2", "选项3", "选项4", "选项5", "选项6", "选项7"]
-EasyRadioButton(root, options, var)
+root = tk.Tk()
+root.geometry("300x200")
+
+fade_in(root)
+
+button = tk.Button(root, text="点击淡出", command=lambda: fade_out(root))
+button.pack()
+
 root.mainloop()
