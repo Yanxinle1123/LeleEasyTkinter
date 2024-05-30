@@ -5,9 +5,9 @@ from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 
 class EasyDropList:
 
-    def __init__(self, window, options=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE, padx=0,
-                 pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0, rowspan=1,
-                 columnspan=1):
+    def __init__(self, window, options=None, default=1, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
+                 padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0,
+                 rowspan=1, columnspan=1):
         if options is None:
             options = ['选项1', '选项2', '选项3']
         self._window = window
@@ -16,9 +16,10 @@ class EasyDropList:
         self._width = width
         self._height = height
         self._font_size = font_size
+        self._default = default - 1
 
         self._selected_option = tkinter.StringVar(self._window)
-        self._selected_option.set(self._options[0])  # 默认选中第一个选项
+        self._selected_option.set(self._options[self._default])  # 默认选中第一个选项
         self._combo = tkinter.OptionMenu(self._window, self._selected_option, *self._options)
         if layout == "grid":
             self._combo.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
@@ -37,5 +38,5 @@ if __name__ == '__main__':
     root = tkinter.Tk()
     EasyAutoWindow(root, window_title="DropList", window_width_value=200, window_height_value=50, adjust_x=False,
                    adjust_y=False)
-    EasyDropList(root, expand=tkinter.YES)
+    EasyDropList(root, options=['选项1', '选项2', '选项3'], default=2, expand=tkinter.YES)
     root.mainloop()
