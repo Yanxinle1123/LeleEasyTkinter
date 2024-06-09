@@ -33,10 +33,22 @@ class EasyDropList:
     def get_combo_value(self):
         return self._selected_option.get()
 
+    def set_combo_value(self, value):
+        self._selected_option.set(value)
+
 
 if __name__ == '__main__':
     root = tkinter.Tk()
     EasyAutoWindow(root, window_title="DropList", window_width_value=200, window_height_value=50, adjust_x=False,
                    adjust_y=False)
-    EasyDropList(root, options=['选项1', '选项2', '选项3'], default=2, expand=tkinter.YES)
+    drop_list = EasyDropList(root, options=['选项1', '选项2', '选项3'], default=2, expand=tkinter.YES)
+
+
+    def change_value():
+        drop_list.set_combo_value('选项3')
+
+
+    button = tkinter.Button(root, text="改变值", command=change_value)
+    button.pack()
+
     root.mainloop()
