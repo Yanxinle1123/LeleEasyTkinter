@@ -49,6 +49,8 @@ def demo_warning(root):
     askstring_result = EasyWarningWindows(root, "输入框", "这是一个输入框").show_warning()
     print(askstring_result)
 
+    root.destroy()
+
 
 if __name__ == '__main__':
     root = tk.Tk()
