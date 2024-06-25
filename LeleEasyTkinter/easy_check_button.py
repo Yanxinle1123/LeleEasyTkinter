@@ -42,7 +42,8 @@ if __name__ == "__main__":
         fruit_set = fruit_check_button.get_set()
         if not fruit_set:
             fruit_set = "无选项"
-        EasyWarningWindows("信息", fruit_set).show_warning()
+        print("你选择的水果有:", fruit_set)
+        EasyWarningWindows(root, "信息", fruit_set).show_warning()
 
 
     def quit_window():
