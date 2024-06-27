@@ -1,9 +1,5 @@
 import tkinter
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_button import EasyButton
-from LeleEasyTkinter.easy_warning_windows import EasyWarningWindows
-
 
 class EasyCheckButton:
     def __init__(self, window, text=None, set_=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
@@ -38,24 +34,21 @@ class EasyCheckButton:
                 selected_options.append(option)
         return selected_options
 
+    def get_vars(self):
+        return self._vars
+
 
 if __name__ == "__main__":
-
-    def get_set():
-        fruit_set = fruit_check_button.get_set()
-        if not fruit_set:
-            fruit_set = "无选项"
-        print("你选择的水果有:", fruit_set)
-        EasyWarningWindows(root, "信息", fruit_set).show_warning()
-
-
-    def quit_window():
-        root.destroy()
+    def on_button_click():
+        # 取消选中所有选项
+        for var in fruit_check_button.get_vars().values():
+            var.set(0)
+        # 选中"橙子(默认)"
+        fruit_check_button.get_vars()["橙子(默认)"].set(1)
 
 
     root = tkinter.Tk()
-    EasyAutoWindow(root, window_title="CheckButton", window_width_value=500, window_height_value=500, adjust_x=False,
-                   adjust_y=False)
+    root.title("示例")
 
     fruit_check_button = EasyCheckButton(root,
                                          text=["苹果(默认)", "香蕉(默认)", "橙子(默认)", "葡萄", "梨子(默认)", "榴莲",
@@ -63,8 +56,7 @@ if __name__ == "__main__":
                                          set_=["苹果(默认)", "梨子(默认)", "橙子(默认)", "香蕉(默认)"],
                                          expand=tkinter.YES)
 
-    get_set_button = EasyButton(root, text="获取选项", font_size=12, width=6, height=1, cmd=get_set)
-
-    quit_button = EasyButton(root, text="退出", font_size=12, width=6, height=1, cmd=quit_window)
+    button = tkinter.Button(root, text="改变选中值", command=on_button_click)
+    button.pack()
 
     root.mainloop()
