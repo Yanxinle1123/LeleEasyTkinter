@@ -7,13 +7,15 @@ from LeleEasyTkinter.easy_warning_windows import EasyWarningWindows
 
 class EasyCheckButton:
     def __init__(self, window, text=None, set_=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+                 padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1,
+                 anchor=tkinter.W):
         if text is None:
             text = ["选项1", "选项2", "选项3"]
         self._window = window
         self._text = text
         self._set = set_
         self._cmd = cmd
+        self._anchor = anchor
         self._vars = {}
         for options in self._text:
             var = tkinter.IntVar()
@@ -25,7 +27,8 @@ class EasyCheckButton:
                 check_button.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
                                   padx=padx, pady=pady, ipadx=ipadx, ipady=ipady)
             else:
-                check_button.pack(side=side, expand=expand, fill=fill, padx=padx, pady=pady, ipadx=ipadx,
+                check_button.pack(side=side, anchor=anchor, expand=expand, fill=fill, padx=padx, pady=pady,
+                                  ipadx=ipadx,
                                   ipady=ipady)
 
     def get_set(self):
