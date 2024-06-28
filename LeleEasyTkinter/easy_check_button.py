@@ -37,14 +37,17 @@ class EasyCheckButton:
     def get_vars(self):
         return self._vars
 
+    def set(self, values):
+        for option, var in self._vars.items():
+            if option in values:
+                var.set(1)
+            else:
+                var.set(0)
+
 
 if __name__ == "__main__":
     def on_button_click():
-        # 取消选中所有选项
-        for var in fruit_check_button.get_vars().values():
-            var.set(0)
-        # 选中"橙子(默认)"
-        fruit_check_button.get_vars()["橙子(默认)"].set(1)
+        fruit_check_button.set(["苹果(默认)", "橙子(默认)"])
 
 
     root = tkinter.Tk()
