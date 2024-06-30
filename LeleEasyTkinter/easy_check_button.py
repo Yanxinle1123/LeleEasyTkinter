@@ -2,19 +2,20 @@ import tkinter
 
 
 class EasyCheckButton:
-    def __init__(self, window, text=None, set_=None, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
+    def __init__(self, window, text=None, set_text_list=None, master_win=None, cmd=None, side=tkinter.TOP, expand=False,
+                 fill=tkinter.NONE,
                  padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1,
                  anchor=tkinter.W):
         if text is None:
             text = ["选项1", "选项2", "选项3"]
         self._window = window
         self._text = text
-        self._set = set_
+        self._set = set_text_list
         self._cmd = cmd
         self._anchor = anchor
         self._vars = {}
         for options in self._text:
-            var = tkinter.IntVar()
+            var = tkinter.IntVar(master_win)
             check_button = tkinter.Checkbutton(self._window, text=options, variable=var)
             self._vars[options] = var
             if options in self._set:
@@ -47,6 +48,7 @@ class EasyCheckButton:
 
 if __name__ == "__main__":
     def on_button_click():
+        print(f"after selected_list={fruit_check_button.get_set()}")
         fruit_check_button.set(["苹果(默认)", "橙子(默认)"])
 
 
@@ -56,8 +58,9 @@ if __name__ == "__main__":
     fruit_check_button = EasyCheckButton(root,
                                          text=["苹果(默认)", "香蕉(默认)", "橙子(默认)", "葡萄", "梨子(默认)", "榴莲",
                                                "荔枝", "草莓", "柚子", "樱桃", "杏子", "菠萝", "西瓜"],
-                                         set_=["苹果(默认)", "梨子(默认)", "橙子(默认)", "香蕉(默认)"],
+                                         set_text_list=["梨子(默认)", "香蕉(默认)"],
                                          expand=tkinter.YES)
+    print(f"before selected_list={fruit_check_button.get_set()}")
 
     button = tkinter.Button(root, text="改变选中值", command=on_button_click)
     button.pack()
