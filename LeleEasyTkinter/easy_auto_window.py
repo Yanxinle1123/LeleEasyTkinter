@@ -33,7 +33,7 @@ class EasyAutoWindow:
             self._window_height_value = int(self._screen_height * 8.4) // 10
 
         if self._window_y_value is None:
-            self._window_y_value = (self._screen_height - self._window_height_value) // 2 - 20
+            self._window_y_value = (self._screen_height - self._window_height_value) // 2
 
         if self._window_x_value is None:
             self._window_x_value = (self._screen_width - self._window_width_value) // 2
