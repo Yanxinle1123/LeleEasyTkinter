@@ -6,12 +6,12 @@ from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 
 class EasyLabel:
     def __init__(self, window, text, side=tkinter.TOP, expand=False, fill=tkinter.NONE, padx=0, pady=0, ipadx=0,
-                 ipady=0, font_size=17, layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+                 ipady=0, font_size=17, layout="pack", row=0, column=0, rowspan=1, columnspan=1, text_color="black"):
         self._window = window
         self._text = text
         self._font_size = font_size
 
-        self._label = Label(window, text=self._text, font=("Arial", self._font_size))
+        self._label = Label(window, text=self._text, font=("Arial", self._font_size), fg=text_color)
         if layout == "grid":
             self._label.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
                              padx=padx, pady=pady, ipadx=ipadx, ipady=ipady)
