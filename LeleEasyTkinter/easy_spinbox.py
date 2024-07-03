@@ -5,11 +5,13 @@ from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 
 class EasySpinbox:
     def __init__(self, window, from_, to, state="readonly", width=10, expand=False, side=tkinter.TOP, fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1):
+                 padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1,
+                 font=("Arial", 12), increment=1, command=None):
         self._window = window
         self._from_ = from_
         self._to = to
-        self._spinbox = tkinter.Spinbox(self._window, from_=self._from_, to=self._to, state=state, width=width)
+        self._spinbox = tkinter.Spinbox(self._window, from_=self._from_, to=self._to, state=state, width=width,
+                                        font=font, increment=increment, command=command)
         if layout == "grid":
             self._spinbox.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
                                padx=padx, pady=pady, ipadx=ipadx, ipady=ipady)
