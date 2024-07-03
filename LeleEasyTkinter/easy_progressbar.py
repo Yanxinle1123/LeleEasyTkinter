@@ -42,11 +42,18 @@ class EasyProgressbar:
 
 
 if __name__ == "__main__":
+    num = 0
+
+
     def start_progressbar():
-        for _ in range(100):
-            progressbar.increase_progressbar()
-        time.sleep(0.5)
-        window.destroy()
+        global num
+
+        if num == 0:
+            num += 1
+            for _ in range(100):
+                progressbar.increase_progressbar()
+            time.sleep(0.5)
+            window.destroy()
 
 
     window = tk.Tk()

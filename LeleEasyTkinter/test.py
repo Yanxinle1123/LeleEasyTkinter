@@ -1,22 +1,19 @@
 import tkinter
 
-from LeleEasyTkinter.easy_check_button import EasyCheckButton
 
-
-def on_button_click():
-    fruit_check_button.set(["苹果(默认)", "橙子(默认)"])
+def on_submit():
+    print("Selected value:", spinbox.get())
 
 
 root = tkinter.Tk()
-root.title("示例")
+root.title("Spinbox Example")
 
-fruit_check_button = EasyCheckButton(root,
-                                     text=["苹果(默认)", "香蕉(默认)", "橙子(默认)", "葡萄", "梨子(默认)", "榴莲",
-                                           "荔枝", "草莓", "柚子", "樱桃", "杏子", "菠萝", "西瓜"],
-                                     set_text_list=["苹果(默认)", "梨子(默认)", "橙子(默认)", "香蕉(默认)"],
-                                     expand=tkinter.YES)
+# 创建 Spinbox
+spinbox = tkinter.Spinbox(root, from_=1, to=10, state="readonly")
+spinbox.pack()
 
-button = tkinter.Button(root, text="改变选中值", command=on_button_click)
-button.pack()
+# 创建一个提交按钮，单击时输出 Spinbox 的值
+submit_button = tkinter.Button(root, text="Submit", command=on_submit)
+submit_button.pack()
 
 root.mainloop()
