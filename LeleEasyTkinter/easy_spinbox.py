@@ -29,5 +29,11 @@ if __name__ == '__main__':
     window = tkinter.Tk()
     EasyAutoWindow(window, window_title="Spinbox", window_width_value=290, window_height_value=100, adjust_x=False,
                    adjust_y=False)
-    EasySpinbox(window, from_=0, to=5, state='readonly', expand=True)
+
+
+    def on_value_change():
+        print("Value changed:", spinbox.get_set())
+
+
+    spinbox = EasySpinbox(window, from_=0, to=5, state='readonly', expand=True, cmd=on_value_change)
     window.mainloop()

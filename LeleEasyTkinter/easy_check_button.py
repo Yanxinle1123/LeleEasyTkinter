@@ -15,7 +15,7 @@ class EasyCheckButton:
         self._vars = {}
         for options in self._text:
             var = tkinter.IntVar(master_win)
-            check_button = tkinter.Checkbutton(self._window, text=options, variable=var)
+            check_button = tkinter.Checkbutton(self._window, text=options, variable=var, command=self._cmd)
             self._vars[options] = var
             if options in self._set:
                 check_button.select()
@@ -51,6 +51,10 @@ if __name__ == "__main__":
         fruit_check_button.set(["苹果(默认)", "橙子(默认)"])
 
 
+    def on_checkbutton_click():
+        print(f"Checkbutton clicked, current selected_list={fruit_check_button.get_set()}")
+
+
     root = tkinter.Tk()
     root.title("示例")
 
@@ -58,6 +62,7 @@ if __name__ == "__main__":
                                          text=["苹果(默认)", "香蕉(默认)", "橙子(默认)", "葡萄", "梨子(默认)", "榴莲",
                                                "荔枝", "草莓", "柚子", "樱桃", "杏子", "菠萝", "西瓜"],
                                          set_text_list=["梨子(默认)", "香蕉(默认)"],
+                                         cmd=on_checkbutton_click,
                                          expand=tkinter.YES)
     print(f"before selected_list={fruit_check_button.get_set()}")
 

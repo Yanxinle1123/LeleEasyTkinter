@@ -4,7 +4,6 @@ from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 
 
 class EasyDropList:
-
     def __init__(self, window, options=None, default=1, cmd=None, side=tkinter.TOP, expand=False, fill=tkinter.NONE,
                  padx=0, pady=0, ipadx=0, ipady=0, width=17, height=8, font_size=17, layout="pack", row=0, column=0,
                  rowspan=1, columnspan=1):
@@ -20,6 +19,8 @@ class EasyDropList:
 
         self._selected_option = tkinter.StringVar(self._window)
         self._selected_option.set(self._options[self._default])  # 默认选中第一个选项
+        self._selected_option.trace("w", self._command)  # 在选项改变时调用 cmd 函数
+
         self._combo = tkinter.OptionMenu(self._window, self._selected_option, *self._options)
         if layout == "grid":
             self._combo.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan, sticky="nsew",
@@ -41,7 +42,18 @@ if __name__ == '__main__':
     root = tkinter.Tk()
     EasyAutoWindow(root, window_title="DropList", window_width_value=200, window_height_value=50, adjust_x=False,
                    adjust_y=False)
-    drop_list = EasyDropList(root, options=['选项1', '选项2', '选项3'], default=2, expand=tkinter.YES)
+
+
+    def on_option_change(*args):
+        index, mode, name = args
+        print("Index:", index)
+        print("Mode:", mode)
+        print("Name:", name)
+        print("Option changed to:", drop_list.get_combo_value())
+
+
+    drop_list = EasyDropList(root, options=['选项1', '选项2', '选项3'], default=2, cmd=on_option_change,
+                             expand=tkinter.YES)
 
 
     def change_value():
