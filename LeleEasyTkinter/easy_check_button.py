@@ -3,9 +3,8 @@ import tkinter
 
 class EasyCheckButton:
     def __init__(self, window, text=None, set_text_list=None, master_win=None, cmd=None, side=tkinter.TOP, expand=False,
-                 fill=tkinter.NONE,
-                 padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1, columnspan=1,
-                 anchor=tkinter.W):
+                 fill=tkinter.NONE, padx=0, pady=0, ipadx=0, ipady=0, layout="pack", row=0, column=0, rowspan=1,
+                 columnspan=1, anchor=tkinter.W):
         if text is None:
             text = ["选项1", "选项2", "选项3"]
         self._window = window
