@@ -11,6 +11,10 @@ def cubic_bezier(t, p0, p1, p2, p3):
 
 def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
     window.update_idletasks()
+
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
     geometry = window.geometry().split('+')
     current_x = int(geometry[1])
     current_y = int(geometry[2])
