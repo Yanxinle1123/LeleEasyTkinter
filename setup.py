@@ -6,6 +6,7 @@ setup(
     packages=find_packages(),
     author="YanXinle",
     author_email="1020121123@qq.com",
-    description="tkinter库的简化版",
+    description="tkinter库的k简化版",
     url="https://github.com/Yanxinle1123/LeleEasyTkinter",
 )
+k
