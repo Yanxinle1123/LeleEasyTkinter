@@ -34,13 +34,17 @@ def move_window_to(window, target_x, target_y, steps=100):
 if __name__ == '__main__':
     root = tkinter.Tk()
     root.geometry("200x200")
+
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
     EasyAutoWindow(root, window_title="动画演示", window_width_value=210, window_height_value=100, adjust_x=False,
                    adjust_y=False)
 
     EasyButton(root, "移动窗口",
                cmd=lambda: move_window_to(root,
-                                          target_x=random.randint(200, 1000),
-                                          target_y=random.randint(200, 800),
+                                          target_x=random.randint(250, screen_width - 250),
+                                          target_y=random.randint(250, screen_height - 250),
                                           steps=100),
                width=10, height=1, font_size=12, expand=tkinter.YES)
 
