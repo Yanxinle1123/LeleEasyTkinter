@@ -1,23 +1,31 @@
-import math
 import random
 import tkinter
 
+from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from LeleEasyTkinter.easy_button import EasyButton
 
-def move_window_to(window, target_x, target_y, steps=200):
+
+def cubic_bezier(t, p0, p1, p2, p3):
+    return (1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t ** 2 * p2 + t ** 3 * p3
+
+
+def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
     window.update_idletasks()
     geometry = window.geometry().split('+')
     current_x = int(geometry[1])
     current_y = int(geometry[2])
 
-    distance_x = target_x - current_x
-    distance_y = target_y - current_y
+    # 随机生成控制点，根据amplitude参数调整生成范围
+    control_x1 = random.randint(int(current_x - amplitude * screen_width), int(current_x + amplitude * screen_width))
+    control_y1 = random.randint(int(current_y - amplitude * screen_height), int(current_y + amplitude * screen_height))
+    control_x2 = random.randint(int(target_x - amplitude * screen_width), int(target_x + amplitude * screen_width))
+    control_y2 = random.randint(int(target_y - amplitude * screen_height), int(target_y + amplitude * screen_height))
 
     for i in range(steps + 1):
-        ratio = i / steps
-        factor = 0.5 - 0.5 * math.cosh(ratio * math.pi)
+        t = i / steps
 
-        x = int(current_x + distance_x * factor)
-        y = int(current_y + distance_y * factor)
+        x = int(cubic_bezier(t, current_x, control_x1, control_x2, target_x))
+        y = int(cubic_bezier(t, current_y, control_y1, control_y2, target_y))
 
         window.geometry(f"+{x}+{y}")
         window.update()
@@ -25,31 +33,22 @@ def move_window_to(window, target_x, target_y, steps=200):
     window.geometry(f"+{target_x}+{target_y}")
 
 
-def center_window(root):
-    root.update_idletasks()
-    width = root.winfo_width()
-    height = root.winfo_height()
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-
-    x = (screen_width - width) // 2
-    y = (screen_height - height) // 2
-
-    move_window_to(root, x, y)
-
-
 if __name__ == '__main__':
     root = tkinter.Tk()
-    root.geometry("200x100")
+    root.geometry("200x200")
 
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
 
-    button = tkinter.Button(root, text="Move Window",
-                            command=lambda: move_window_to(root,
-                                                           random.randint(0, screen_width - 200),
-                                                           random.randint(0, screen_height - 100)))
-    button.pack(fill=tkinter.BOTH, expand=True)
+    EasyAutoWindow(root, window_title="动画演示", window_width_value=210, window_height_value=100, adjust_x=False,
+                   adjust_y=False)
 
-    center_window(root)
+    EasyButton(root, "移动窗口",
+               cmd=lambda: move_window_to(root,
+                                          target_x=random.randint(250, screen_width - 250),
+                                          target_y=random.randint(250, screen_height - 250),
+                                          steps=100,
+                                          amplitude=0.5),
+               width=10, height=1, font_size=12, expand=tkinter.YES)
+
     root.mainloop()
