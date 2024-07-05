@@ -52,7 +52,7 @@ if __name__ == '__main__':
                                           target_x=random.randint(250, screen_width - 250),
                                           target_y=random.randint(250, screen_height - 250),
                                           steps=100,
-                                          amplitude=0.5),
+                                          amplitude=0.2),
                width=10, height=1, font_size=12, expand=tkinter.YES)
 
     root.mainloop()
