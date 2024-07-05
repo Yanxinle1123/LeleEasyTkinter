@@ -2,9 +2,10 @@ import random
 import tkinter
 
 from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_button import EasyButton
+from LeleEasyTkinter.easy_label import EasyLabel
 
 num = 0
+mouse_in_window = False
 
 
 def cubic_bezier(t, p0, p1, p2, p3):
@@ -47,22 +48,43 @@ def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
         num -= 1
 
 
+def on_mouse_enter(event):
+    global mouse_in_window
+    mouse_in_window = True
+
+
+def on_mouse_leave(event):
+    global mouse_in_window
+    mouse_in_window = False
+
+
+def on_mouse_move(event):
+    if mouse_in_window:
+        screen_width = event.widget.winfo_screenwidth()
+        screen_height = event.widget.winfo_screenheight()
+
+        target_x = random.randint(400, screen_width - 400)
+        target_y = random.randint(400, screen_height - 400)
+
+        move_window_to(event.widget.winfo_toplevel(), target_x, target_y, steps=50, amplitude=0.05)
+
+
 if __name__ == '__main__':
     root = tkinter.Tk()
     root.geometry("200x200")
 
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-
-    EasyAutoWindow(root, window_title="动画演示", window_width_value=210, window_height_value=100, adjust_x=False,
+    EasyAutoWindow(root, window_title="会跑的窗口", window_width_value=280, window_height_value=100, adjust_x=False,
                    adjust_y=False)
 
-    EasyButton(root, "移动窗口",
-               cmd=lambda: move_window_to(root,
-                                          target_x=random.randint(250, screen_width - 250),
-                                          target_y=random.randint(250, screen_height - 250),
-                                          steps=100,
-                                          amplitude=0.05),
-               width=10, height=1, font_size=12, expand=tkinter.YES)
+    EasyLabel(root, text="请将鼠标移动到窗口内", expand=tkinter.YES, fill=tkinter.BOTH)
+
+    root.bind('<Enter>', on_mouse_enter)
+    root.bind('<Leave>', on_mouse_leave)
+    root.bind('<Motion>', on_mouse_move)
+
+    for child in root.winfo_children():
+        child.bind('<Enter>', on_mouse_enter)
+        child.bind('<Leave>', on_mouse_leave)
+        child.bind('<Motion>', on_mouse_move)
 
     root.mainloop()
