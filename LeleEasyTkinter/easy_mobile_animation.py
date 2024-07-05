@@ -2,6 +2,7 @@ import random
 import tkinter
 
 from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from LeleEasyTkinter.easy_fade_animation import fade_in, fade_out
 from LeleEasyTkinter.easy_label import EasyLabel
 
 num = 0
@@ -48,6 +49,10 @@ def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
         num -= 1
 
 
+def quit_window(event=None):
+    fade_out(root)
+
+
 def on_mouse_enter(event):
     global mouse_in_window
     mouse_in_window = True
@@ -66,7 +71,7 @@ def on_mouse_move(event):
         target_x = random.randint(400, screen_width - 400)
         target_y = random.randint(400, screen_height - 400)
 
-        move_window_to(event.widget.winfo_toplevel(), target_x, target_y, steps=50, amplitude=0.05)
+        move_window_to(event.widget.winfo_toplevel(), target_x, target_y, steps=60, amplitude=0.05)
 
 
 if __name__ == '__main__':
@@ -77,14 +82,20 @@ if __name__ == '__main__':
                    adjust_y=False)
 
     EasyLabel(root, text="请将鼠标移动到窗口内", expand=tkinter.YES, fill=tkinter.BOTH)
+    EasyLabel(root, text="按下q键退出", expand=tkinter.YES, fill=tkinter.BOTH)
 
     root.bind('<Enter>', on_mouse_enter)
     root.bind('<Leave>', on_mouse_leave)
     root.bind('<Motion>', on_mouse_move)
+    root.bind('<q>', quit_window)
+    root.bind('<Q>', quit_window)
+    root.protocol("WM_DELETE_WINDOW", quit_window)
 
     for child in root.winfo_children():
         child.bind('<Enter>', on_mouse_enter)
         child.bind('<Leave>', on_mouse_leave)
         child.bind('<Motion>', on_mouse_move)
+
+    fade_in(root)
 
     root.mainloop()
