@@ -6,20 +6,18 @@ from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
 from LeleEasyTkinter.easy_button import EasyButton
 
 
-def move_window_to(window, target_x, target_y, steps=100):
-    # 获取当前窗口的位置和大小
+def move_window_to(window, target_x, target_y, steps=200):
+    window.update_idletasks()
     geometry = window.geometry().split('+')
     current_x = int(geometry[1])
     current_y = int(geometry[2])
 
-    # 计算需要移动的距离
     distance_x = target_x - current_x
     distance_y = target_y - current_y
 
-    # 逐像素移动窗口
     for i in range(steps + 1):
         ratio = i / steps
-        factor = 0.5 - 0.5 * math.cos(ratio * math.pi)  # 使用正弦函数计算移动因子
+        factor = 0.5 - 0.5 * math.cos(ratio * math.pi)
 
         x = int(current_x + distance_x * factor)
         y = int(current_y + distance_y * factor)
@@ -27,7 +25,6 @@ def move_window_to(window, target_x, target_y, steps=100):
         window.geometry(f"+{x}+{y}")
         window.update()
 
-    # 确保窗口移动到准确的目标位置
     window.geometry(f"+{target_x}+{target_y}")
 
 
