@@ -17,7 +17,16 @@ def center_window(root):
     root.geometry(f"+{x}+{y}")
 
 
-def animate_resize_window(root, target_width, target_height, steps=100):
+def cubic_easing(t):
+    if t < 0.5:
+        return 4 * t * t * t
+    t = t - 1
+    return 4 * t * t * t + 1
+
+
+def animate_resize_window(root, target_width, target_height, steps=100, way='ordinary'):
+    root.update()
+
     # 获取当前窗口大小和位置
     geometry = root.geometry()
     current_width = int(geometry.split('x')[0])
@@ -26,21 +35,17 @@ def animate_resize_window(root, target_width, target_height, steps=100):
     current_x = int(rest[1])
     current_y = int(rest[2])
 
-    # 计算每步的宽度和高度增量
-    width_step = (target_width - current_width) / steps
-    height_step = (target_height - current_height) / steps
-
-    # 计算每步的位置增量
-    x_step = width_step / 2
-    y_step = height_step / 2
-
     # 逐步改变窗口大小和位置
-    for i in range(steps):
-        current_width += width_step
-        current_height += height_step
-        current_x -= x_step
-        current_y -= y_step
-        root.geometry(f"{int(current_width)}x{int(current_height)}+{int(current_x)}+{int(current_y)}")
+    for i in range(steps + 1):
+        t = i / steps
+        eased_t = cubic_easing(t) if way == 'magic' else t
+
+        new_width = current_width + (target_width - current_width) * eased_t
+        new_height = current_height + (target_height - current_height) * eased_t
+        new_x = current_x - (target_width - current_width) * eased_t / 2
+        new_y = current_y - (target_height - current_height) * eased_t / 2
+
+        root.geometry(f"{int(new_width)}x{int(new_height)}+{int(new_x)}+{int(new_y)}")
         center_window(root)
         root.update()  # 更新窗口
 
@@ -49,6 +54,6 @@ root = tkinter.Tk()
 EasyAutoWindow(root, window_title="动画演示", window_width_value=1, window_height_value=1, adjust_x=False,
                adjust_y=False)
 
-animate_resize_window(root, 1000, 600)
+animate_resize_window(root, 1000, 600, 50, "ordinary")
 
 root.mainloop()
