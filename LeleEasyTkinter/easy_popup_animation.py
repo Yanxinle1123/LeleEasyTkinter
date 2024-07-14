@@ -18,8 +18,6 @@ def center_window(root):
 
 
 def animate_resize_window(root, target_width, target_height, steps=100):
-    root.geometry("1x1")
-
     # 获取当前窗口大小和位置
     geometry = root.geometry()
     current_width = int(geometry.split('x')[0])
@@ -51,6 +49,6 @@ root = tkinter.Tk()
 EasyAutoWindow(root, window_title="动画演示", window_width_value=1, window_height_value=1, adjust_x=False,
                adjust_y=False)
 
-animate_resize_window(root, 1000, 600, 20)
+animate_resize_window(root, 1000, 600)
 
 root.mainloop()
