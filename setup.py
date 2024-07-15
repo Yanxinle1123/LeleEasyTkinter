@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="LeleEasyTkinter",
-    version="1.6.3",
+    version="1.6.4",
     packages=find_packages(),
     author="YanXinle",
     author_email="1020121123@qq.com",
