@@ -57,20 +57,21 @@ def animate_resize_window(root, target_width, target_height, steps=20, way='ordi
         root.update()
 
 
-root = tkinter.Tk()
+if __name__ == '__main__':
+    root = tkinter.Tk()
 
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
-random_x = random.randint(600, screen_width - 600)
-random_y = random.randint(400, screen_height - 400)
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    random_x = random.randint(600, screen_width - 600)
+    random_y = random.randint(400, screen_height - 400)
 
-EasyAutoWindow(root, window_title="动画演示", window_width_value=1, window_height_value=1, adjust_x=False,
-               adjust_y=False, window_x_value=random_x, window_y_value=random_y)
+    EasyAutoWindow(root, window_title="动画演示", window_width_value=1, window_height_value=1, adjust_x=False,
+                   adjust_y=False, window_x_value=random_x, window_y_value=random_y)
 
-EasyLabel(root, text="动画演示", expand=True, font_size=100)
+    EasyLabel(root, text="动画演示", expand=True, font_size=100)
 
-fade_in(root, ms=2)
-animate_resize_window(root, 1000, 600, 20, "ordinary", False)
+    fade_in(root, ms=2)
+    animate_resize_window(root, 1000, 600, 20, "ordinary", False)
 
-root.protocol("WM_DELETE_WINDOW", close_window)
-root.mainloop()
+    root.protocol("WM_DELETE_WINDOW", close_window)
+    root.mainloop()
