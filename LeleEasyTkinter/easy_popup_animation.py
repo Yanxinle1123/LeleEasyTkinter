@@ -31,7 +31,7 @@ def cubic_easing(t):
     return 4 * t * t * t + 1
 
 
-def animate_resize_window(root, target_width, target_height, steps=100, way='ordinary', center=False):
+def animate_resize_window(root, target_width, target_height, steps=20, way='ordinary', center=False):
     root.update()
 
     # 获取当前窗口大小和位置
