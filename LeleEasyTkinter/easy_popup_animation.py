@@ -31,7 +31,7 @@ def cubic_easing(t):
     return 4 * t * t * t + 1
 
 
-def animate_resize_window(root, target_width, target_height, steps=20, way='ordinary', center=False):
+def animate_resize_window(root, target_width, target_height, steps=20, way='ordinary', center=False, update_interval=5):
     root.update()
 
     # 获取当前窗口大小和位置
@@ -54,7 +54,8 @@ def animate_resize_window(root, target_width, target_height, steps=20, way='ordi
         root.geometry(f"{int(new_width)}x{int(new_height)}+{int(new_x)}+{int(new_y)}")
         if center:
             center_window(root)
-        root.update()
+        if i % update_interval == 0:  # 只有在每update_interval步才调用root.update()
+            root.update()
 
 
 if __name__ == '__main__':
@@ -71,7 +72,7 @@ if __name__ == '__main__':
     EasyLabel(root, text="动画演示", expand=True, font_size=100)
 
     fade_in(root, ms=2)
-    animate_resize_window(root, 1000, 600, 20, "ordinary", False)
+    animate_resize_window(root, 1000, 600, 100, "ordinary", False)
 
     root.protocol("WM_DELETE_WINDOW", close_window)
     root.mainloop()
