@@ -9,7 +9,7 @@ from LeleEasyTkinter.easy_warning_windows import EasyWarningWindows
 
 
 def trigger():
-    EasyWarningWindows("信息", "这是按钮被点击时触发的代码, 可以改动参数 cmd 来实现").show_warning()
+    EasyWarningWindows(window, "信息", "这是按钮被点击时触发的代码, 可以改动参数 cmd 来实现").show_warning()
 
 
 def start_progressbar():
@@ -22,7 +22,7 @@ def quit_window():
 
 
 def author():
-    EasyWarningWindows("信息", "作者: Yan Xinle").show_warning()
+    EasyWarningWindows(window, "信息", "作者: Yan Xinle").show_warning()
 
 
 window = tk.Tk()
