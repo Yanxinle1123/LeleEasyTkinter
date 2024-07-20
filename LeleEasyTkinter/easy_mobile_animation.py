@@ -13,7 +13,14 @@ def cubic_bezier(t, p0, p1, p2, p3):
     return (1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t ** 2 * p2 + t ** 3 * p3
 
 
-def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
+def cubic_easing(t):
+    if t < 0.5:
+        return 4 * t * t * t
+    t = t - 1
+    return 4 * t * t * t + 1
+
+
+def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5, way='ordinary'):
     global num
 
     if num == 0:
@@ -38,9 +45,10 @@ def move_window_to(window, target_x, target_y, steps=200, amplitude=0.5):
 
         for i in range(steps + 1):
             t = i / steps
+            eased_t = cubic_easing(t) if way == 'magic' else t
 
-            x = int(cubic_bezier(t, current_x, control_x1, control_x2, target_x))
-            y = int(cubic_bezier(t, current_y, control_y1, control_y2, target_y))
+            x = int(cubic_bezier(eased_t, current_x, control_x1, control_x2, target_x))
+            y = int(cubic_bezier(eased_t, current_y, control_y1, control_y2, target_y))
 
             window.geometry(f"+{x}+{y}")
             window.update()
@@ -71,7 +79,7 @@ def on_mouse_move(event):
         target_x = random.randint(400, screen_width - 400)
         target_y = random.randint(400, screen_height - 400)
 
-        move_window_to(event.widget.winfo_toplevel(), target_x, target_y, steps=60, amplitude=0.05)
+        move_window_to(event.widget.winfo_toplevel(), target_x, target_y, steps=60, amplitude=0.05, way='ordinary')
 
 
 if __name__ == '__main__':
