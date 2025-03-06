@@ -2,7 +2,7 @@ import tkinter
 import tkinter.font as tkFont
 from tkinter import Button
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_auto_window import EasyAutoWindow
 
 
 class EasyButton:

@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_button import EasyButton
+from EasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_button import EasyButton
 
 
 def fade_in(window, alpha=0, ms=2):

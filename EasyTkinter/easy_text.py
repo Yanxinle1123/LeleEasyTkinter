@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import Entry
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_auto_window import EasyAutoWindow
 
 
 class EasyText:

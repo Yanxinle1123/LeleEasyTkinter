@@ -1,11 +1,11 @@
 import tkinter as tk
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_button import EasyButton
-from LeleEasyTkinter.easy_drop_list import EasyDropList
-from LeleEasyTkinter.easy_label import EasyLabel
-from LeleEasyTkinter.easy_progressbar import EasyProgressbar
-from LeleEasyTkinter.easy_warning_windows import EasyWarningWindows
+from EasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_button import EasyButton
+from EasyTkinter.easy_drop_list import EasyDropList
+from EasyTkinter.easy_label import EasyLabel
+from EasyTkinter.easy_progressbar import EasyProgressbar
+from EasyTkinter.easy_warning_windows import EasyWarningWindows
 
 
 def trigger():
@@ -27,13 +27,13 @@ def author():
 
 window = tk.Tk()
 
-EasyAutoWindow(window, window_title="LeleEasyTkinter 库的小部件", window_width_value=1200, window_height_value=800,
+EasyAutoWindow(window, window_title="EasyTkinter 库的小部件", window_width_value=1200, window_height_value=800,
                adjust_y=False, adjust_x=False)
-EasyLabel(window, text="这个窗口是由 LeleEasyTkinter 库的 EasyAutoWindow 类创建的, 你可以通过调各种参数来控制窗口",
+EasyLabel(window, text="这个窗口是由 EasyTkinter 库的 EasyAutoWindow 类创建的, 你可以通过调各种参数来控制窗口",
           font_size=20, side=tk.TOP, expand=tk.YES)
-EasyLabel(window, text="这几行文本是由 LeleEasyTkinter 库的 EasyLabel 类创建的, 可以调整颜色, 字体等样式", font_size=20,
+EasyLabel(window, text="这几行文本是由 EasyTkinter 库的 EasyLabel 类创建的, 可以调整颜色, 字体等样式", font_size=20,
           side=tk.TOP, expand=tk.YES)
-EasyLabel(window, text="接下来, 我们来看下 LeleEasyTkinter 库可以创建的几个小部件, 这些小部件都可以调整各种样式",
+EasyLabel(window, text="接下来, 我们来看下 EasyTkinter 库可以创建的几个小部件, 这些小部件都可以调整各种样式",
           font_size=20, side=tk.TOP, expand=tk.YES)
 
 EasyLabel(window, text="1. 按钮", font_size=20, side=tk.TOP, expand=tk.YES)

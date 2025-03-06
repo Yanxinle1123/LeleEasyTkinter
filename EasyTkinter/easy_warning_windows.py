@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.messagebox as messagebox
 from tkinter import simpledialog
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_auto_window import EasyAutoWindow
 
 
 class EasyWarningWindows:

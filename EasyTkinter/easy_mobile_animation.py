@@ -1,9 +1,9 @@
 import random
 import tkinter
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_fade_animation import fade_in, fade_out
-from LeleEasyTkinter.easy_label import EasyLabel
+from EasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_fade_animation import fade_in, fade_out
+from EasyTkinter.easy_label import EasyLabel
 
 num = 0
 mouse_in_window = False

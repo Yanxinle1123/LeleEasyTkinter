@@ -2,8 +2,8 @@ import time
 import tkinter as tk
 from tkinter import ttk
 
-from LeleEasyTkinter.easy_auto_window import EasyAutoWindow
-from LeleEasyTkinter.easy_button import EasyButton
+from EasyTkinter.easy_auto_window import EasyAutoWindow
+from EasyTkinter.easy_button import EasyButton
 
 
 class EasyProgressbar:
